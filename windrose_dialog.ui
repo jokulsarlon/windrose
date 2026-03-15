@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WindRoseDialog</class>
+ <widget class="QDialog" name="WindRoseDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>风向玫瑰图设置</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QGroupBox" name="grp_input">
+     <property name="title">
+      <string>位置输入</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QToolButton" name="btn_map_point">
+          <property name="text">
+           <string>地图选点</string>
+          </property>
+          <property name="icon">
+           <iconset theme="QStyle::SP_ArrowUp"/>
+          </property>
+          <property name="toolTip">
+           <string>点击地图选择点</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="btn_manual">
+          <property name="text">
+           <string>手动输入</string>
+          </property>
+          <property name="icon">
+           <iconset theme="QStyle::SP_FileDialogDetailedView"/>
+          </property>
+          <property name="toolTip">
+           <string>手动输入经纬度</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_lon">
+          <property name="text">
+           <string>经度:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="line_lon" readOnly="true"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_lat">
+          <property name="text">
+           <string>纬度:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="line_lat" readOnly="true"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>数据参数</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_year">
+        <property name="text">
+         <string>年份:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="spin_year">
+        <property name="minimum">
+         <number>2000</number>
+        </property>
+        <property name="maximum">
+         <number>2100</number>
+        </property>
+        <property name="value">
+         <number>2024</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_month">
+        <property name="text">
+         <string>月份:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="cmb_month">
+        <item>
+         <property name="text">
+          <string>全年</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1月</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2月</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>3月</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>4月</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>5月</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>6月</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>7月</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>8月</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>9月</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>10月</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>11月</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>12月</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_height">
+        <property name="text">
+         <string>高度:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="cmb_height">
+        <item>
+         <property name="text">
+          <string>10m</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>80m</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>120m</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>180m</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>输出样式</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_style">
+        <property name="text">
+         <string>配色方案:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="cmb_style"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_graph_style">
+        <property name="text">
+         <string>图形样式:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="cmb_graph_style">
+        <item>
+         <property name="text">
+          <string>扇区式</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>同心圆式</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_opacity">
+        <property name="text">
+         <string>扇区透明度:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSlider" name="slider_opacity">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>80</number>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="QCheckBox" name="cb_add_to_project">
+        <property name="text">
+         <string>添加到QGIS项目</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
+       <widget class="QCheckBox" name="cb_export_svg">
+        <property name="text">
+         <string>导出SVG</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_svg_path">
+        <property name="text">
+         <string>SVG保存路径:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLineEdit" name="line_svg_path"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_browse_svg">
+          <property name="text">
+           <string>浏览...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="btn_generate">
+       <property name="text">
+        <string>生成</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_export_svg">
+       <property name="text">
+        <string>导出SVG</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_cancel">
+       <property name="text">
+        <string>取消</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsMapLayerComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsmaplayercombobox.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btn_cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>WindRoseDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>416</x>
+     <y>514</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>249</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
