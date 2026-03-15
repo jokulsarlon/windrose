@@ -1,14 +1,14 @@
 [general]
-name=windrose
+name=WindRose
 description=生成风向玫瑰图（支持点选、手动输入）
 version=1.3.6
 qgisMinimumVersion=3.28
-author=hexiaosang&dongdong
+author=hexiaosang, OpenQGIS
 email=sho@live.cn
 about=基于Open-Meteo API生成风向玫瑰图，可自定义样式并导出SVG。
-tracker=
-repository=
-tags=windrose,风向,玫瑰图,气象
-homepage=
+tracker=https://github.com/yourusername/windrose/issues
+repository=https://github.com/yourusername/windrose
+tags=windrose,风向,玫瑰图,气象,wind direction,rose diagram,meteorology
+homepage=https://github.com/yourusername/windrose
 category=Analysis
 icon=icon.png
