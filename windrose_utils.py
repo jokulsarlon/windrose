@@ -8,6 +8,8 @@ from qgis.core import (
 )
 from qgis.PyQt.QtCore import QVariant
 
+from . import i18n
+
 
 def compute_frequencies(wind_dir_list):
     wd = np.array(wind_dir_list)
@@ -37,8 +39,18 @@ def create_rose_layers(lon, lat, freq, labels, angles, group_name="风玫瑰", s
     group = root.addGroup(group_name)
     layers = []
 
+    # 获取本地化图层名称
+    layer_point_name = i18n.tr("layer_point")
+    layer_freq_name = i18n.tr("layer_freq_table")
+    layer_outline_name = i18n.tr("layer_outline")
+    layer_closed_name = i18n.tr("layer_closed_polygon")
+    layer_sectors_name = i18n.tr("layer_sectors")
+    layer_coord_name = i18n.tr("layer_coord_lines")
+    layer_arrow_name = i18n.tr("layer_north_arrow")
+    layer_circles_name = i18n.tr("layer_circles")
+
     # 1. 点图层
-    pt_layer = QgsVectorLayer("Point?crs=EPSG:4326", "采集点", "memory")
+    pt_layer = QgsVectorLayer("Point?crs=EPSG:4326", layer_point_name, "memory")
     pr = pt_layer.dataProvider()
     pr.addAttributes([QgsField("Lon", QVariant.Double), QgsField("Lat", QVariant.Double)])
     pt_layer.updateFields()
@@ -49,7 +61,7 @@ def create_rose_layers(lon, lat, freq, labels, angles, group_name="风玫瑰", s
     layers.append(pt_layer)
 
     # 2. 风向频率表
-    freq_layer = QgsVectorLayer("None", "风向频率", "memory")
+    freq_layer = QgsVectorLayer("None", layer_freq_name, "memory")
     pr = freq_layer.dataProvider()
     pr.addAttributes([QgsField("Dir", QVariant.String),
                       QgsField("Angle", QVariant.Double),
@@ -74,7 +86,7 @@ def create_rose_layers(lon, lat, freq, labels, angles, group_name="风玫瑰", s
         points.append(QgsPointXY(lon + R * np.cos(rad), lat + R * np.sin(rad)))
 
     # 3. 外环线
-    line_layer = QgsVectorLayer("LineString?crs=EPSG:4326", "外环线", "memory")
+    line_layer = QgsVectorLayer("LineString?crs=EPSG:4326", layer_outline_name, "memory")
     pr = line_layer.dataProvider()
     pr.addAttributes([QgsField("MaxR", QVariant.Double)])
     line_layer.updateFields()
@@ -86,7 +98,7 @@ def create_rose_layers(lon, lat, freq, labels, angles, group_name="风玫瑰", s
     layers.append(line_layer)
 
     # 4. 闭合面 - 透明填充，黑色轮廓
-    poly_layer = QgsVectorLayer("Polygon?crs=EPSG:4326", "闭合面", "memory")
+    poly_layer = QgsVectorLayer("Polygon?crs=EPSG:4326", layer_closed_name, "memory")
     pr = poly_layer.dataProvider()
     pr.addAttributes([QgsField("MaxR", QVariant.Double)])
     poly_layer.updateFields()
@@ -105,7 +117,7 @@ def create_rose_layers(lon, lat, freq, labels, angles, group_name="风玫瑰", s
     layers.append(poly_layer)
 
     # 5. 扇区三角面 - 按Parity字段分类符号化
-    tri_layer = QgsVectorLayer("Polygon?crs=EPSG:4326", "扇区面", "memory")
+    tri_layer = QgsVectorLayer("Polygon?crs=EPSG:4326", layer_sectors_name, "memory")
     pr = tri_layer.dataProvider()
     pr.addAttributes([
         QgsField("Dir", QVariant.String),
@@ -139,7 +151,7 @@ def create_rose_layers(lon, lat, freq, labels, angles, group_name="风玫瑰", s
     layers.append(tri_layer)
 
     # 6. 坐标参考线（南北线加长，确保超出扇区范围）
-    ref_layer = QgsVectorLayer("LineString?crs=EPSG:4326", "坐标线", "memory")
+    ref_layer = QgsVectorLayer("LineString?crs=EPSG:4326", layer_coord_name, "memory")
     pr = ref_layer.dataProvider()
     pr.addAttributes([QgsField("Type", QVariant.String)])
     ref_layer.updateFields()
@@ -171,7 +183,7 @@ def create_rose_layers(lon, lat, freq, labels, angles, group_name="风玫瑰", s
     layers.append(ref_layer)
 
     # 7. 指北箭头：位于南北线的北端点
-    arrow_layer = QgsVectorLayer("Point?crs=EPSG:4326", "指北箭头", "memory")
+    arrow_layer = QgsVectorLayer("Point?crs=EPSG:4326", layer_arrow_name, "memory")
     pr_arrow = arrow_layer.dataProvider()
     pr_arrow.addAttributes([QgsField("Direction", QVariant.String)])
     arrow_layer.updateFields()
@@ -191,7 +203,7 @@ def create_rose_layers(lon, lat, freq, labels, angles, group_name="风玫瑰", s
 
     # 8. 同心圆参考线
     if show_circles:
-        circle_layer = QgsVectorLayer("LineString?crs=EPSG:4326", "同心圆参考线", "memory")
+        circle_layer = QgsVectorLayer("LineString?crs=EPSG:4326", layer_circles_name, "memory")
         pr = circle_layer.dataProvider()
         pr.addAttributes([QgsField("Radius", QVariant.Double)])
         circle_layer.updateFields()

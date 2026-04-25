@@ -6,6 +6,7 @@ import numpy as np
 import calendar
 
 from .windrose_utils import compute_frequencies
+from . import i18n
 
 
 class WindRoseWorker(QObject):
@@ -53,11 +54,11 @@ class WindRoseWorker(QObject):
             data = resp.json()
             key = f"wind_direction_{self.height}m"
             if "hourly" not in data or key not in data["hourly"]:
-                raise Exception(f"未找到风向数据（高度{self.height}m可能不支持）")
+                raise Exception(i18n.tr("msg_no_wind_data", height=self.height))
             wd = data["hourly"][key]
             wd = [x for x in wd if x is not None]
             if not wd:
-                raise Exception("风向数据全部为空")
+                raise Exception(i18n.tr("msg_wind_data_empty"))
             return wd
         except requests.exceptions.RequestException as e:
-            raise Exception(f"API请求失败: {e}")
+            raise Exception(i18n.tr("msg_error_api", error=str(e)))
